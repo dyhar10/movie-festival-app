@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/dyhar10/movie-festival-app/models"
+	"github.com/google/uuid"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
@@ -38,7 +39,7 @@ func CreateMovie(c *gin.Context) {
 		return
 	}
 	// Create movie
-	movie := models.Movie{Title: input.Title, Description: input.Description, Duration: input.Duration, Artist: input.Artist, Genre: input.Genre, URL: input.URL}
+	movie := models.Movie{UUID: uuid.New(), Title: input.Title, Description: input.Description, Duration: input.Duration, Artist: input.Artist, Genre: input.Genre, URL: input.URL}
 
 	db := c.MustGet("db").(*gorm.DB)
 	db.Create(&movie)

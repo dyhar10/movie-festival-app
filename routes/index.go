@@ -16,17 +16,9 @@ func SetupRoutes(db *gorm.DB) *gin.Engine {
 	moviesRg := r.Group("/movies")
 	{
 		moviesRg.GET("/list", controllers.FindMovies)
-		moviesRg.POST("/movies", controllers.CreateMovie)
+		moviesRg.POST("/", controllers.CreateMovie)
 		moviesRg.GET("/:uuid", controllers.FindMovie)
 		moviesRg.PATCH("/:uuid", controllers.UpdateMovie)
-	}
-
-	usersRg := r.Group("/users")
-	{
-		usersRg.GET("/list", controllers.FindMovies)
-		usersRg.POST("/movies", controllers.CreateMovie)
-		usersRg.GET("/:uuid", controllers.FindMovie)
-		usersRg.PATCH("/:uuid", controllers.UpdateMovie)
 	}
 
 	return r
